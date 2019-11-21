@@ -1,0 +1,31 @@
+{% extends 'base.html'  %}
+
+{% block name_should_be_equal %}
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2>HTML Forms</h2>
+
+{% if user.is_authenticated %}
+<li>Hello, {{user.username}}</li>
+<a href="/accounts/logout">Logout</a>
+{% else %}
+<a href="accounts/register">REGISTER</a>
+<a href="accounts/login">LOGIN</a>
+{% endif %}
+
+<form action="add" method="POST">
+
+{% csrf_token %}   
+
+First number:<br>
+<input type="text" name="num1" placeholder="{{numbers.num1}}">
+<br>
+Last number:<br> 
+<input type="text" name="num2" placeholder="{{numbers.num2}}">
+<br><br>
+<input type="submit" value="ADD">
+</form> 
+
+{% endblock %}

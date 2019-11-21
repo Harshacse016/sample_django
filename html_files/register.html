@@ -1,0 +1,78 @@
+{% extends 'base.html'  %}
+
+{% block name_should_be_equal %}
+
+{% if user.is_authenticated %}
+<li>Hello, {{user.username}}</li>
+<a href="/accounts/logout">Logout</a>
+{% else %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>REGISTERATION FORM</title>
+</head>
+
+<body style="background-color:cyan;">
+
+<h1>
+    <center> WELCOME TO THE FUN GAMES </center>
+</h1>
+
+<h2 style="background-color:red;" align=center>REGISTRATION FORM</h2>
+
+<form method="post" action="register">
+
+{% csrf_token %}
+
+    <table border=0 align=center>
+
+        <tr>
+            <td><label>FIRST-NAME:</label></td>
+            <td><input type = "text" name="fname" size=25 id="name"placeholder="Enter your first name"></td>
+        </tr> <br>
+        
+        <tr>
+            <td><label>LAST-NAME:</label></td>
+            <td><input type = "text" name="lname" size=25 id="name"placeholder="Enter your last name"></td>
+        </tr> <br>
+
+        <tr>
+            <td><label>GMAIL:</label></td>
+            <td><input type ="text" size=25 name="gmail" id="gmail"placeholder="Enter your gmail" required></td>
+        </tr> <br>
+
+        <tr>
+            <td><label>USERNAME:</label></td>
+            <td><input type ="text" size=25 name="uname" id="username"placeholder="Enter username" required></td>
+        </tr> <br>
+
+        <tr>
+            <td><label>PASSWORD:</label></td>
+            <td><input type ="password" size=25 name="pass" id="password"placeholder="Enter password" required></td></tr><br>
+        <tr>
+            <td><label>CONFIRM PASSWORD:</label></td>
+            <td><input type ="password" size=25 name="cpass" id="password"placeholder="Confirm password" required></td>
+        </tr> <br>
+
+        <tr>
+            <td> <input type="submit" name="submit" value="SUBMIT" name=""> </td>
+            <td> <input type="reset" name="reset" value="RESET"> </td>
+        </tr>
+
+    </table>
+
+    <div>
+
+        {% for i in messages %}
+            {{i}}
+        {% endfor %}
+    </div>
+
+</form>
+
+</body>
+</html>
+{% endif %}
+
+{% endblock %}
